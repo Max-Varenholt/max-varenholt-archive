@@ -196,11 +196,20 @@ if (!isBackstage && !isRealityOffice && !isNotFound) {
     "personal.html": ["reality.html", "Auditar la historia"]
   };
   const next = trail[pageFile];
-  if (next) {
-    const mobileTrail = document.createElement("nav");
-    mobileTrail.className = "mobile-trail";
-    mobileTrail.setAttribute("aria-label", "Ruta Matterhorn para móvil");
-    mobileTrail.innerHTML = `<a href="index.html">Volver al buscador</a><a href="${next[0]}">${next[1]} →</a>`;
-    document.body.append(mobileTrail);
-  }
+
+if (next) {
+  const mobileTrail = document.createElement("nav");
+  mobileTrail.className = "mobile-trail";
+  mobileTrail.setAttribute("aria-label", "Ruta Matterhorn para móvil");
+  mobileTrail.innerHTML = `<a href="index.html">Volver al buscador</a><a href="${next[0]}">${next[1]} →</a>`;
+  document.body.append(mobileTrail);
+}
+
+// Subtle fiction / satire notice
+const fictionNotice = document.createElement("div");
+fictionNotice.className = "fiction-notice";
+fictionNotice.textContent =
+  "The Max Varenholt Archive — A fictional satirical universe.";
+
+document.body.appendChild(fictionNotice);
 }
