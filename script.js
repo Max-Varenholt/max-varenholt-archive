@@ -208,8 +208,10 @@ if (next) {
 // Subtle fiction / satire notice
 const fictionNotice = document.createElement("div");
 fictionNotice.className = "fiction-notice";
-fictionNotice.textContent =
-  "The Max Varenholt Archive — A fictional satirical universe.";
+
+fictionNotice.innerHTML = `
+  The Max Varenholt Archive —
+  <a href="about.html">A fictional satirical universe.</a>
+`;
 
 document.body.appendChild(fictionNotice);
-}
