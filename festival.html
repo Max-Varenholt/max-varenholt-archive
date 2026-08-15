@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Instituto Matterhorn de supervivencia logística en festivales." />
+    <title>Festival Survival Institute | Matterhorn</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="festival-page">
+    <a class="skip" href="#festival">Saltar al protocolo</a>
+    <header class="festival-header"><a href="festival.html">MFSI <small>Matterhorn Festival Survival Institute</small></a><nav><a href="#protocol">Protocolo</a><a href="#calculator">Calculadora</a><a href="index.html">Buscar</a></nav></header>
+    <main id="festival">
+      <section class="festival-hero"><div><p>PROTOCOLO 02:02 · VERSIÓN MEDITERRÁNEA</p><h1>La noche no se sobrevive.<br /><em>Se distribuye.</em></h1><p class="festival-lede">Método probado para conservar grupo, móvil, cartera, llaves, dignidad y al menos una zapatilla hasta el último cierre.</p><a href="#calculator">Calcular supervivencia</a></div><aside><strong>2,02 m</strong><span>altura de baliza humana</span><strong>9</strong><span>bolsillos recomendados por Max</span><strong>0</strong><span>objetos entregados al “amigo responsable”</span></aside></section>
+
+      <figure class="festival-documentary"><img src="assets/lore/max-varenholt-protocolo-festival.webp" alt="Max Varenholt visible sobre un grupo durante un festival mediterráneo" /><figcaption>Ensayo de campo 02:02. Ocho dedos visibles; el noveno bolsillo no participa en el recuento.</figcaption></figure>
+
+      <section class="festival-protocol" id="protocol">
+        <article><b>01</b><h2>La baliza</h2><p>Si el grupo se separa, Max permanece quieto. El resto localiza la única cabeza que continúa visible dos filas por encima del pogo.</p></article>
+        <article><b>02</b><h2>Los bolsillos</h2><p>Móvil a la izquierda, powerbank a la derecha, cartera interior. El noveno bolsillo se reserva para objetos cuyo propietario todavía no ha aparecido.</p></article>
+        <article><b>03</b><h2>El calzado</h2><p>No se estrena. No se combina con la ropa. Se selecciona por amortiguación, agarre y aceptación serena de su destino.</p></article>
+        <article><b>04</b><h2>“Cinco minutos”</h2><p>Unidad temporal no equivalente al sistema métrico. Puede describir desde cruzar una barra hasta cambiar de escenario y cenar.</p></article>
+        <article id="himno"><b>05</b><h2>El himno preventivo</h2><p><em>La barana no és una drecera</em>, composición no oficial de Max. Homenaje a la Federació Balear de Balconing sin encargo ni afiliación; el coro se interpreta desde la planta baja.</p></article>
+      </section>
+
+      <figure class="festival-documentary festival-documentary--hymn"><img src="assets/lore/max-varenholt-himno-preventivo.webp" alt="Max Varenholt al piano durante la presentación de su himno preventivo" /><figcaption>Presentación para prensa en planta baja. Las dos sillas vacías fueron contabilizadas como público técnico.</figcaption></figure>
+
+      <section class="festival-calculator" id="calculator">
+        <div><p class="festival-label">HERRAMIENTA OFICIAL</p><h2>Índice de regreso conjunto</h2><p>Ajusta las condiciones. El resultado tiene el mismo rigor científico que seguir a la persona más alta del grupo.</p></div>
+        <form data-festival-form>
+          <label>Personas en el grupo <output data-group-output>6</output><input type="range" name="group" min="2" max="16" value="6" /></label>
+          <label>Horas previstas <output data-hours-output>8</output><input type="range" name="hours" min="2" max="14" value="8" /></label>
+          <label>Bolsillos con cierre <output data-pockets-output>4</output><input type="range" name="pockets" min="0" max="9" value="4" /></label>
+          <label class="festival-check"><input type="checkbox" name="max" checked /> Max actúa como baliza</label>
+          <div class="festival-result" data-festival-result><strong>87%</strong><span>Probabilidad de regresar juntos</span><p>Pronóstico: alguien perderá al grupo, pero no durante el tiempo suficiente para admitirlo.</p></div>
+        </form>
+      </section>
+      <p class="festival-foot"><a href="b2b.html">El B2B de las 03:17</a> · <a href="athlete.html">Expediente deportivo</a> · <a href="style.html">Uniforme recomendado</a> · <a href="index.html">Volver al buscador</a></p>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>

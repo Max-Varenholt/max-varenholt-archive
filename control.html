@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#10130f" />
+    <title>Control del Archivo MV</title>
+    <style>
+      :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      * { box-sizing: border-box; }
+      body { min-height: 100svh; margin: 0; color: #eef0e9; background: radial-gradient(circle at 15% 0, #303b25 0, transparent 32%), #10130f; }
+      main { width: min(620px, 100%); min-height: 100svh; margin: auto; padding: max(24px, env(safe-area-inset-top)) 20px max(30px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; }
+      .brand { display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+      .brand span { color: #a9b19f; }
+      h1 { margin: 48px 0 10px; font-size: clamp(38px, 11vw, 66px); line-height: .95; letter-spacing: -.055em; }
+      .intro { margin: 0; color: #b8c0b1; font-size: 16px; line-height: 1.5; }
+      .panel { margin-top: 34px; padding: 22px; border: 1px solid #46503f; border-radius: 24px; background: rgba(24,29,22,.88); box-shadow: 0 24px 70px rgba(0,0,0,.32); }
+      .state-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid #384033; }
+      .state-label { color: #a9b19f; font-size: 13px; }
+      .state { display: inline-flex; align-items: center; gap: 9px; font-weight: 800; }
+      .state::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #798273; box-shadow: 0 0 0 5px rgba(121,130,115,.12); }
+      .state[data-mode="online"]::before { background: #70e58d; box-shadow: 0 0 0 5px rgba(112,229,141,.13); }
+      .state[data-mode="offline"]::before { background: #ff9478; box-shadow: 0 0 0 5px rgba(255,148,120,.13); }
+      label { display: block; margin: 20px 0 8px; color: #d9ddd4; font-size: 13px; font-weight: 700; }
+      input[type="password"] { width: 100%; min-height: 52px; padding: 0 16px; border: 1px solid #4d5747; border-radius: 14px; background: #0e110d; color: #fff; font: inherit; }
+      input:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid #d4ff75; outline-offset: 3px; }
+      .remember { display: flex; align-items: center; gap: 10px; margin: 13px 0 0; color: #9fa798; font-weight: 500; }
+      .remember input { width: 18px; height: 18px; accent-color: #d4ff75; }
+      .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+      button { min-height: 60px; border: 0; border-radius: 16px; font: 800 15px/1.1 inherit; cursor: pointer; }
+      button:disabled { cursor: wait; opacity: .6; }
+      .go-live { color: #10130f; background: #d4ff75; }
+      .go-dark { color: #fff; background: #3b211d; border: 1px solid #72463b; }
+      .check { width: 100%; min-height: 48px; margin-top: 12px; color: #dfe5d8; background: #2a3026; }
+      .feedback { min-height: 48px; margin: 18px 0 0; padding: 13px 15px; border-radius: 13px; color: #cbd2c4; background: #11150f; font-size: 14px; line-height: 1.45; }
+      .feedback[data-kind="error"] { color: #ffd3c8; background: #321d18; }
+      .feedback[data-kind="success"] { color: #d9ffc9; background: #18301d; }
+      .links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: auto; padding-top: 30px; }
+      a { color: #d4ff75; font-size: 14px; font-weight: 750; text-underline-offset: 4px; }
+      .note { margin: 18px 0 0; color: #899182; font-size: 12px; line-height: 1.5; }
+      @media (max-width: 430px) { .actions { grid-template-columns: 1fr; } h1 { margin-top: 38px; } .panel { padding: 18px; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="brand">Archivo Varenholt <span>Control 02:02</span></div>
+      <h1>Modo festival</h1>
+      <p class="intro">Pon la experiencia online o ciérrala desde el móvil. El cambio suele verse en segundos cerca de ti y puede tardar hasta un minuto en propagarse por completo.</p>
+
+      <section class="panel" aria-labelledby="control-title">
+        <div class="state-row"><span class="state-label" id="control-title">Estado público</span><strong class="state" id="state" data-mode="unknown">Sin comprobar</strong></div>
+        <label for="key">Clave de control</label>
+        <input id="key" type="password" autocomplete="current-password" autocapitalize="none" spellcheck="false" placeholder="Pega tu clave privada" />
+        <label class="remember"><input id="remember" type="checkbox" /> Recordar solo en este dispositivo</label>
+        <div class="actions">
+          <button class="go-live" type="button" data-action="online">Poner online</button>
+          <button class="go-dark" type="button" data-action="offline">Cerrar la web</button>
+        </div>
+        <button class="check" type="button" id="check">Comprobar estado</button>
+        <p class="feedback" id="feedback" role="status" aria-live="polite">Introduce la clave para consultar el estado.</p>
+        <p class="note">La clave no forma parte de la web pública. Si eliges recordarla, quedará guardada únicamente en el navegador de este móvil.</p>
+      </section>
+
+      <nav class="links" aria-label="Enlaces rápidos"><a href="/" target="_blank" rel="noopener">Abrir web pública</a><a href="/offline.html" target="_blank" rel="noopener">Ver pantalla cerrada</a></nav>
+    </main>
+    <script>
+      (() => {
+        const storageKey = "mv-control-key";
+        const keyInput = document.querySelector("#key");
+        const remember = document.querySelector("#remember");
+        const state = document.querySelector("#state");
+        const feedback = document.querySelector("#feedback");
+        const buttons = [...document.querySelectorAll("button")];
+        const saved = localStorage.getItem(storageKey);
+        if (saved) { keyInput.value = saved; remember.checked = true; }
+
+        function setBusy(value) { buttons.forEach((button) => { button.disabled = value; }); }
+        function setFeedback(message, kind = "") { feedback.textContent = message; feedback.dataset.kind = kind; }
+        function setState(mode) {
+          state.dataset.mode = mode;
+          state.textContent = mode === "online" ? "ONLINE" : mode === "offline" ? "CERRADA" : "Sin comprobar";
+        }
+        function credentials() {
+          const key = keyInput.value.trim();
+          if (!key) throw new Error("Introduce la clave de control.");
+          if (remember.checked) localStorage.setItem(storageKey, key); else localStorage.removeItem(storageKey);
+          return key;
+        }
+        async function request(method, mode) {
+          const key = credentials();
+          const response = await fetch("/api/site-control", {
+            method,
+            headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
+            body: method === "POST" ? JSON.stringify({ mode }) : undefined,
+            cache: "no-store"
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(data.error || "No se pudo contactar con el archivo.");
+          setState(data.mode);
+          return data;
+        }
+        async function run(method, mode) {
+          setBusy(true);
+          setFeedback(method === "POST" ? "Aplicando el cambio…" : "Consultando el archivo…");
+          try {
+            const data = await request(method, mode);
+            const message = data.mode === "online" ? "La web está online y lista para compartir." : "La web está cerrada; el panel de control sigue disponible.";
+            setFeedback(message, "success");
+            if (navigator.vibrate) navigator.vibrate(45);
+          } catch (error) {
+            setState("unknown");
+            setFeedback(error.message, "error");
+          } finally { setBusy(false); }
+        }
+        document.querySelectorAll("[data-action]").forEach((button) => button.addEventListener("click", () => run("POST", button.dataset.action)));
+        document.querySelector("#check").addEventListener("click", () => run("GET"));
+        keyInput.addEventListener("keydown", (event) => { if (event.key === "Enter") run("GET"); });
+        remember.addEventListener("change", () => { if (!remember.checked) localStorage.removeItem(storageKey); });
+        if (saved) run("GET");
+      })();
+    </script>
+  </body>
+</html>
